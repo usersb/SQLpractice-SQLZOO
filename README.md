@@ -151,6 +151,6 @@ id	   num
 
 name	 company
 
-       pos
+        pos
        
-       stop
+        stop
