@@ -132,3 +132,25 @@ id	name
 
 ...
 
+
+
+
+
+
+
+
+
+
+stops(id, name)
+
+route(num,company,pos, stop)
+
+stops	 route
+
+id	   num
+
+name	 company
+
+       pos
+       
+       stop
