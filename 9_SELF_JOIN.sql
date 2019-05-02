@@ -128,10 +128,16 @@ WHERE  a.stop = (SELECT id
 --and the bus no. and company for the second bus.
 
 
-
-SELECT DISTINCT S.num,S.company, stops.name, E.num, E.company
+SELECT DISTINCT S.num, S.company, stops.name, E.num, E.company
 FROM
-(SELECT a.num, a.company, b.stop
-FROM route a JOIN route b
-ON (a.num = b.num) AND (a.company = b.company)
-WHERE a.stop = (SELECT id 
+(SELECT a.company, a.num, b.stop
+ FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num)
+ WHERE a.stop=(SELECT id FROM stops WHERE name= 'Craiglockhart')
+)S
+  JOIN
+(SELECT a.company, a.num, b.stop
+ FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num)
+ WHERE a.stop=(SELECT id FROM stops WHERE name= 'Sighthill')
+)E
+ON (S.stop = E.stop)
+JOIN stops ON(stops.id = S.stop)
